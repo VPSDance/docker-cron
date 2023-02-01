@@ -1,5 +1,5 @@
 # docker-cron
-Run a cron jobs inside docker container
+Run cron jobs inside docker container
 
 ### Usage
 
