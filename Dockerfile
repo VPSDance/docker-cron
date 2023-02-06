@@ -9,7 +9,7 @@ RUN apk update && apk add --no-cache \
   tzdata \
   bash \
   sed \
-  openssh-client \ # scp/sftp
+  openssh-client \
   git \
   python3 py3-pip \
   curl
