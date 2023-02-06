@@ -2,13 +2,14 @@
 FROM alpine:latest
 
 
-ENV TZ=Asia/Chongqing
+ENV TZ=Asia/Shanghai
 
 # dependencies
 RUN apk update && apk add --no-cache \
   tzdata \
   bash \
   sed \
+  # scp/sftp
   openssh-client \
   git \
   python3 py3-pip \
