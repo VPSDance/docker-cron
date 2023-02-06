@@ -19,10 +19,10 @@ RUN apk update && apk add --no-cache \
 # add 1min
 RUN echo "*       *       *       *       *       run-parts /etc/periodic/1min" >> /etc/crontabs/root
 # for ssh
-RUN echo "
-StrictHostKeyChecking no
-UserKnownHostsFile /dev/null
-" >> /etc/ssh/ssh_config
+RUN { \
+    echo 'StrictHostKeyChecking no' \
+    echo 'dUserKnownHostsFile /dev/null' \
+} >> /etc/ssh/ssh_config
 
 COPY entrypoint.sh /entrypoint.sh
 # [kill with Ctrl-C, tini or --init](https://github.com/moby/moby/issues/2838)
