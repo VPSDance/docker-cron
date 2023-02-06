@@ -22,5 +22,6 @@ RUN echo "UserKnownHostsFile /dev/null" >>/etc/ssh/ssh_config
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-# crond -f -d 8
-CMD ["crond" "-f", "-d", "8"]
+# crond -f -d 8 # log to STDOUT
+# crond -f -d 8 -L /var/log/cron.log # log to file
+CMD crond -f -d 8
