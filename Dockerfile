@@ -21,7 +21,7 @@ RUN echo "*       *       *       *       *       run-parts /etc/periodic/1min" 
 # for ssh
 RUN { \
     echo 'StrictHostKeyChecking no'; \
-    echo 'dUserKnownHostsFile /dev/null'; \
+    echo 'UserKnownHostsFile /dev/null'; \
 } >> /etc/ssh/ssh_config
 
 COPY entrypoint.sh /entrypoint.sh
