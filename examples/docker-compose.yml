@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  cron:
+    container_name: cron
+    image: vpsdance/cron
+    environment:
+      - TZ=Asia/Shanghai
+    # register custom cron
+    command: sh -c '/root/startup.sh && crond -f -l 8'
+    volumes:
+      - ./1min:/etc/periodic/1min
+      - ./15min:/etc/periodic/15min
+      - ./hourly:/etc/periodic/hourly
+      - ./daily:/etc/periodic/daily
+      - ./weekly:/etc/periodic/weekly
+      - ./monthly:/etc/periodic/monthly
+      # custom cron schedules
+      - ./startup.sh:/root/startup.sh
