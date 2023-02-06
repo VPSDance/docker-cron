@@ -33,6 +33,7 @@ services:
       - ./cron_tasks/daily:/etc/periodic/daily
       - ./cron_tasks/weekly:/etc/periodic/weekly
       - ./cron_tasks/monthly:/etc/periodic/monthly
+      # - ~/.ssh:/root/.ssh # ssh keys
 ```
 - `docker-compose up -d --force-recreate` start
 - `docker logs cron -f` print logs

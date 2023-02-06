@@ -17,3 +17,5 @@ services:
       - ./monthly:/etc/periodic/monthly
       # custom cron schedules
       - ./startup.sh:/root/startup.sh
+      # share ssh keys
+      # - ~/.ssh:/root/.ssh
