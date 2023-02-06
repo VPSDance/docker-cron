@@ -16,12 +16,18 @@ RUN apk update && apk add --no-cache \
   curl \
   tini
 
+# add 1min
 RUN echo "*       *       *       *       *       run-parts /etc/periodic/1min" >> /etc/crontabs/root
-RUN echo "StrictHostKeyChecking no" >>/etc/ssh/ssh_config
-RUN echo "UserKnownHostsFile /dev/null" >>/etc/ssh/ssh_config
+# for ssh
+RUN echo "
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+" >> /etc/ssh/ssh_config
 
 COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]
+# [kill with Ctrl-C, tini or --init](https://github.com/moby/moby/issues/2838)
+ENTRYPOINT ["/sbin/tini", "-s", "--", "/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
 
 # crond -f -d 8 # log to STDOUT
 # crond -f -d 8 -L /var/log/cron.log # log to file
